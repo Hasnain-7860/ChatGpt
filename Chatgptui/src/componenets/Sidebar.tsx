@@ -11,6 +11,7 @@ type SidebarProps = {
   chats: Chat[];
   activeChat: string;
   onSelectChat: (id: string) => void;
+  onNewChat: () => void;
 };
 
 const Sidebar = ({
@@ -19,10 +20,12 @@ const Sidebar = ({
   chats,
   activeChat,
   onSelectChat,
+  onNewChat,
 }: SidebarProps) => {
+
+  
   return (
     <>
-      {/* Mobile Overlay */}
       {open && (
         <div
           className="fixed inset-0 bg-black/50 z-30 lg:hidden"
@@ -61,7 +64,10 @@ const Sidebar = ({
 
       
         <div className="p-3">
-          <button className="w-full flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#2a2a2a] transition">
+         <button
+  onClick={onNewChat}
+  className="w-full flex items-center gap-3 rounded-xl px-3 py-3 hover:bg-[#2a2a2a] transition"
+>
             <PenSquare size={18} />
             <span className="text-sm">New chat</span>
           </button>

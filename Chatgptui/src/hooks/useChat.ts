@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { GoogleGenAI } from "@google/genai";
+export type Message = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+};
 
+export type Chat = {
+  id: string;
+  title: string;
+  messages: Message[];
+};
 const ai = new GoogleGenAI({
-  apiKey: import.meta.env.VITE_GEMINI_API_KEY,
+  apiKey: "AQ.Ab8RN6J-Hx6vDwVz2K1uwiUXdf95HmRWorUthQjToROkZddd0Q",
 });
 
 export type ChatMessage = {

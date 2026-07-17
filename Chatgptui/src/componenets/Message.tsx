@@ -34,7 +34,7 @@ const Message = ({ role, content }: MessageProps) => {
         {role === "assistant" && (
           <button
             onClick={handleCopy}
-            className="absolute -bottom-10 left-0 flex items-center gap-1 rounded-lg px-2 py-1 text-gray-400 hover:bg-[#303030] hover:text-white transition"
+            className="absolute -bottom-5 left-0 flex items-center gap-1 rounded-lg px-2 py-1 text-gray-400 hover:bg-[#303030] hover:text-white transition"
           >
             {copied ? <Check size={16} /> : <Copy size={16} />}
             <span className="text-xs">
