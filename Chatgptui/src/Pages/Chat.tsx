@@ -42,7 +42,9 @@ async function streamChat(prompt: string) {
 }
 
 const Chat = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+ const [sidebarOpen, setSidebarOpen] = useState(() => {
+  return window.innerWidth >= 1024;
+});
 
   const [chats, setChats] = useState<Chat[]>(() => {
     const saved = localStorage.getItem("chat_app");
@@ -146,17 +148,38 @@ const messages = activeChat?.messages ?? [];
     setLoading(false);
   }
 }
+const handleNewChat = () => {
+  const newChat: Chat = {
+    id: crypto.randomUUID(),
+    title: "New Chat",
+    messages: [],
+  };
+
+  setChats((prev) => [newChat, ...prev]);
+  setActiveChatId(newChat.id);
+
+  if (window.innerWidth < 1024) {
+    setSidebarOpen(false);
+  }
+};
 
  
   return (
     <div className="flex h-screen bg-[#212121] text-white">
-     <Sidebar
+   <Sidebar
   open={sidebarOpen}
   onToggle={() => setSidebarOpen((prev) => !prev)}
   chats={chats}
   activeChat={activeChatId}
-  onSelectChat={setActiveChatId}
-/>  
+  onSelectChat={(id) => {
+    setActiveChatId(id);
+
+    if (window.innerWidth < 1024) {
+      setSidebarOpen(false);
+    }
+  }}
+  onNewChat={handleNewChat}
+/>
 
       <div className="flex flex-1 flex-col">
         <ChatHeader

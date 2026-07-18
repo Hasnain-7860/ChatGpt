@@ -20,7 +20,7 @@ const ChatHeader = ({
         </button>
 
         <h1 className="text-white text-sm font-medium truncate">
-          {title}
+          ChatGPT
         </h1>
       </div>
       <div className="flex items-center gap-2">
